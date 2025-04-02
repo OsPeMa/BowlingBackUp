@@ -32,10 +32,8 @@ public:
     void DisableEdit();
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling") 
     void ResetBoard();
-
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling") 
     void ResetVisuals();
-
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling") 
     void UpdateScoreBoardVisuals(const TArray<FBowlingFrame>& Frames);
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling") 

@@ -112,20 +112,20 @@ void UWidgetBowlingScore::SwitchDelegates_Implementation(bool bAddDynamic)
     {
         FirstRollText->OnSelectionChanged.AddDynamic(this, &UWidgetBowlingScore::OnFirstRollChanged);
         SecondRollText->OnSelectionChanged.AddDynamic(this, &UWidgetBowlingScore::OnSecondRollChanged);
-        ThirdRollText->OnSelectionChanged.AddDynamic(this, &UWidgetBowlingScore::OnSecondRollChanged);
+        ThirdRollText->OnSelectionChanged.AddDynamic(this, &UWidgetBowlingScore::OnThirdRollChanged);
     }
     else
     {
         FirstRollText->OnSelectionChanged.RemoveDynamic(this, &UWidgetBowlingScore::OnFirstRollChanged);
         SecondRollText->OnSelectionChanged.RemoveDynamic(this, &UWidgetBowlingScore::OnSecondRollChanged);
-        ThirdRollText->OnSelectionChanged.RemoveDynamic(this, &UWidgetBowlingScore::OnSecondRollChanged);
+        ThirdRollText->OnSelectionChanged.RemoveDynamic(this, &UWidgetBowlingScore::OnThirdRollChanged);
     }
 }
 
 void UWidgetBowlingScore::ResetVisuals_Implementation()
 {   
     IBowlingScoreUIInterface::Execute_SwitchDelegates(this, false);
-    IBowlingScoreUIInterface::UpdateScoreUI_Implementation(FBowlingFrame());
+    IBowlingScoreUIInterface::Execute_UpdateScoreUI(this,FBowlingFrame());
     if (FirstRollText && SecondRollText && ThirdRollText) 
     {
         FirstRollText->ClearOptions();

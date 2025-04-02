@@ -37,7 +37,7 @@ void UWidgetScoreBoard::OnResetButtonReleased()
         {
             PlayerNameText->SetText(FText::FromString(InputName));
         }
-        PlayerNameInput->OnTextCommitted.AddDynamic(this, &UWidgetScoreBoard::OnPlayerNameCommitted);
+        
     }
 }
 
@@ -88,14 +88,14 @@ void UWidgetScoreBoard::NativeConstruct()
         }
         if (FrameInterfaces[0])Execute_EnableEdit(FrameInterfaces[0].GetObject());
     }
+
     if (EditNamePanel)
-    {
-        EditNamePanel->SetVisibility(ESlateVisibility::Collapsed);
-    }
+        EditNamePanel->SetVisibility(ESlateVisibility::Visible);
+    if(PlayerNameInput)
+        PlayerNameInput->OnTextCommitted.AddDynamic(this, &UWidgetScoreBoard::OnPlayerNameCommitted);
     if (FinalScoreText)
-    {
         FinalScoreText->SetText(FText::FromString("0"));
-    }
+    
 }
 
 void UWidgetScoreBoard::UpdateScoreBoardVisuals_Implementation(const TArray<FBowlingFrame>& Frames)

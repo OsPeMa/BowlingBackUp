@@ -17,26 +17,21 @@ class BOWLINGBASIC_API UWidgetScoreBoard : public UUserWidget ,public IBowlingSc
 {
 	GENERATED_BODY()
 public:
-	//Costruct widget
-	virtual void NativeConstruct() override;
+	//interfaces
 	void UpdateScoreBoardVisuals_Implementation(const TArray<FBowlingFrame>& Frames);
 	void ResetBoard_Implementation();
+protected:
+	virtual void NativeConstruct() override;
 	UFUNCTION()
 	void ResetScoreBoard();
 	UFUNCTION()
 	void OnResetButtonReleased();
 	UFUNCTION()
 	void OnPlayerNameCommitted(const FText& Text, ETextCommit::Type CommitMethod);
-
-private:
-
-protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	TSubclassOf<UUserWidget> BowlingScoreWidgetClass;
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* ScoreContainer;
-	UPROPERTY()
-	TArray<TScriptInterface<IBowlingScoreUIInterface>> FrameInterfaces;
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* ResetButton;
@@ -52,5 +47,8 @@ protected:
 
 	UPROPERTY(meta = (BindWidget))
 	class UVerticalBox* EditNamePanel;
+private:
+	UPROPERTY()
+	TArray<TScriptInterface<IBowlingScoreUIInterface>> FrameInterfaces;
 };
 
