@@ -2,12 +2,16 @@
 
 
 #include "BowlingGameModeBase.h"
+#include "Misc/Paths.h"
 #include "BowlingFrame.h"
 #include "Engine/Engine.h"
+#include "GameScoreStruct.h"
+#include "Misc/FileHelper.h"
 #include "WidgetScoreBoard.h"
+#include "JsonObjectConverter.h"
 #include "Kismet/GameplayStatics.h"
-#include "Blueprint/WidgetBlueprintLibrary.h"
 #include "BowlingScoreUIInterface.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 // Called at game start
 void ABowlingGameModeBase::BeginPlay()
@@ -116,6 +120,34 @@ int ABowlingGameModeBase::CalculateScore()
     return TotalScore;
 }
 
+void ABowlingGameModeBase::SaveSessionAsJson()
+{
+    FGameSessionData Session;
+    Session.PlayerName = IBowlingScoreUIInterface::Execute_GetPlayerName(ScoreBoardWidget);
+    Session.FinalScore = TotalScore;
+    Session.Date = FDateTime::UtcNow().ToString();
+
+    for (int32 i = 0; i < Frames.Num(); i++)
+    {
+        FGameScoreStruct F;
+        F.Frame = i + 1;
+        F.FirstThrow = Frames[i].FirstThrow;
+        F.SecondThrow = Frames[i].SecondThrow;
+        F.ThirdThrow = Frames[i].ThirdThrow;
+        F.Score = Frames[i].ProcessedScore;
+
+        Session.Frames.Add(F);
+    }
+
+    FString OutputString;
+    FJsonObjectConverter::UStructToJsonObjectString(Session, OutputString);
+
+    FFileHelper::SaveStringToFile(
+        OutputString,
+        *(FPaths::ProjectSavedDir() + TEXT("LastGame.json"))
+    );
+}
+
 // Prints the current score to the log (debug only)
 void ABowlingGameModeBase::PrintScore()
 {
@@ -139,4 +171,9 @@ void ABowlingGameModeBase::ResetGame_Implementation()
         IBowlingScoreUIInterface::Execute_ResetBoard(ScoreBoardWidget);
     }
     TotalScore = 0;
+}
+
+void ABowlingGameModeBase::FinishGame_Implementation()
+{
+    SaveSessionAsJson();
 }

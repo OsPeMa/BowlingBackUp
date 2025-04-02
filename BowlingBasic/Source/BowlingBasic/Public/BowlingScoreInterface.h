@@ -18,10 +18,6 @@ class BOWLINGBASIC_API IBowlingScoreInterface
     GENERATED_BODY()
 
 public:
-    /// <summary>
-    /// Get Current Player Score
-    /// </summary>
-    /// <returns>Total Score</returns>
     virtual int GetCurrentScore_Implementation() const = 0;
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling")
     int32 AddNewFrame(const FBowlingFrame& NewFrame);
@@ -29,4 +25,6 @@ public:
     void UpdateScore();
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling")
     void ResetGame();
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling")
+    void FinishGame();
 };

@@ -15,6 +15,7 @@ FBowlingFrame::FBowlingFrame(int first, int second,int index) :
 	FrameIndex(index),
 	FirstThrow(first),
 	SecondThrow(second),
+	ThirdThrow(0),
 	FrameScore(first + second),
 	ScoreType((FrameScore == 10) ? (first == 10 ? EScoreType::EST_Strike : EScoreType::EST_Spare) : EScoreType::EST_Normal)
 {

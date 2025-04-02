@@ -1,0 +1,77 @@
+{
+	"playerName": "Jugador 1",
+	"frames": [
+		{
+			"frame": 1,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 20
+		},
+		{
+			"frame": 2,
+			"firstThrow": 9,
+			"secondThrow": 1,
+			"thirdThrow": 0,
+			"score": 40
+		},
+		{
+			"frame": 3,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 70
+		},
+		{
+			"frame": 4,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 100
+		},
+		{
+			"frame": 5,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 130
+		},
+		{
+			"frame": 6,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 160
+		},
+		{
+			"frame": 7,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 190
+		},
+		{
+			"frame": 8,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 220
+		},
+		{
+			"frame": 9,
+			"firstThrow": 10,
+			"secondThrow": 0,
+			"thirdThrow": 0,
+			"score": 250
+		},
+		{
+			"frame": 10,
+			"firstThrow": 10,
+			"secondThrow": 10,
+			"thirdThrow": 10,
+			"score": 280
+		}
+	],
+	"finalScore": 280,
+	"date": "2025.04.02-02.08.40"
+}

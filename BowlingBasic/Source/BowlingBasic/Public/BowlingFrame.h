@@ -14,57 +14,41 @@ enum class EScoreType : uint8
 };
 
 /**
- * Struct
+ * Represents a single bowling frame, including its throws and score state.
  */
 USTRUCT(BlueprintType)
 struct BOWLINGBASIC_API FBowlingFrame
 {
 	GENERATED_BODY()
 public:
+	/** Frame's position in the game (0-based index) */
 	UPROPERTY(BlueprintReadWrite, Category = "Bowling")
 	int32 FrameIndex;
-	/// <summary>
-	/// How many pines fell down with first throw.
-	/// </summary>
+	/** First roll in the frame */
 	UPROPERTY(BlueprintReadWrite, Category = "Bowling")
 	int32 FirstThrow;
-	/// <summary>
-	/// How many pines fell down with second throw.
-	/// </summary>
+	/** Second roll in the frame */
 	UPROPERTY(BlueprintReadWrite, Category = "Bowling")
 	int32 SecondThrow;
-	/// <summary>
-	/// How many pines fell down with third throw.
-	/// </summary>
+	/** Third roll (only used in 10th frame if strike/spare) */
 	UPROPERTY(BlueprintReadWrite, Category = "Bowling")
 	int32 ThirdThrow;
-	/// <summary>
-	/// How many pines fell down.
-	/// </summary>
+	/** Calculated score for the frame (sum of throws) */
 	UPROPERTY(BlueprintReadWrite, Category = "Bowling")
 	int32 FrameScore;	
-	/// <summary>
-	/// Sumatory until frame index
-	/// </summary>
+	/** Cumulative score at the end of this frame */
 	UPROPERTY(BlueprintReadWrite, Category = "Bowling")
 	int32 ProcessedScore;
-
+	/** Type of scoring this frame represents */
 	UPROPERTY(BlueprintReadWrite, Category = "Bowling")
 	EScoreType ScoreType = EScoreType::EST_Normal;
 
-	/// <summary>
-	/// Default constructor
-	/// </summary>
+	/** Default constructor initializes everything to zero */
 	FBowlingFrame();
-	/// <summary>
-	/// Default Deconstructor
-	/// </summary>
+	/** Destructor */
 	~FBowlingFrame();
-	/// <summary>
-	/// Build up a frame with first and second values
-	/// </summary>
-	/// <param name="first">: First Throw Pine</param>
-	/// <param name="second">: Second Throw Pine</param>
+	/** Constructor for standard frames (1st to 9th) */
 	FBowlingFrame(int first, int second, int index);
+	/** Constructor for 10th frame with optional third throw */
 	FBowlingFrame(int first, int second, int third, int index);
 };

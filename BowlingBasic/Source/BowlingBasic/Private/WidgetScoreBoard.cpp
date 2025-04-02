@@ -79,7 +79,7 @@ void UWidgetScoreBoard::NativeConstruct()
                 if (UHorizontalBoxSlot* HBoxSlot = Cast<UHorizontalBoxSlot>(PanelSlot))
                 {
                     HBoxSlot->SetSize(FSlateChildSize(ESlateSizeRule::Fill)); 
-                    HBoxSlot->SetPadding(FMargin(5.0f)); 
+                    HBoxSlot->SetPadding(FMargin(1.5f)); 
                 }
                 Execute_UpdateIndex(NewScoreWidget, i);
                 //FrameInterfaces.Add(NewScoreWidget);
@@ -125,6 +125,12 @@ void UWidgetScoreBoard::UpdateScoreBoardVisuals_Implementation(const TArray<FBow
 void UWidgetScoreBoard::ResetBoard_Implementation()
 {
     ResetScoreBoard();
+}
+
+FString UWidgetScoreBoard::GetPlayerName_Implementation() const
+{
+    if (PlayerNameText)return PlayerNameText->GetText().ToString();;
+    return "\0";
 }
 
 void UWidgetScoreBoard::ResetScoreBoard()

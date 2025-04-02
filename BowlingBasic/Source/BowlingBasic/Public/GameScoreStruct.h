@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameSession.generated.h"
 #include "GameScoreStruct.generated.h"
-
+//Struct that will help to serialize Scores
 USTRUCT(BlueprintType)
 struct FGameScoreStruct
 {
@@ -26,7 +26,7 @@ struct FGameScoreStruct
     UPROPERTY()
     int32 Score;
 };
-
+//The Game data
 USTRUCT(BlueprintType)
 struct FGameSessionData
 {

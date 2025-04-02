@@ -18,10 +18,9 @@ class BOWLINGBASIC_API IBowlingScoreUIInterface
     GENERATED_BODY()
 
 public:
-    /// <summary>
-    /// Funtion to update the Frame UI
-    /// </summary>
-    /// <param name="NewFrame">Frame Score</param>
+
+    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling")
+    FString GetPlayerName() const;
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling")
     void UpdateScoreUI(const FBowlingFrame& NewFrame);
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Bowling")

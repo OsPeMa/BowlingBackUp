@@ -37,8 +37,15 @@ void UWidgetBowlingScore::OnFirstRollChanged(FString SelectedItem, ESelectInfo::
         for (int i = 0; i <= MaxSecond; i++)
         {
             SecondRollText->AddOption(FString::FromInt(i));
+        } 
+        if (FirstThrow == 10 && FrameIndex != 9)
+        {
+            SecondRollText->SetSelectedIndex(0);  
+            TrySendFrameToGame();
+            FirstRollText->SetIsEnabled(false);
+            SecondRollText->SetIsEnabled(false);
+            ThirdRollText->SetIsEnabled(false);
         }
-        if (FirstThrow == 10 && FrameIndex != 9)SecondRollText->SetSelectedIndex(0);
     }
     if (FrameIndex == 9 && FirstThrow == 10 && ThirdRollText)
     {
@@ -172,6 +179,8 @@ void UWidgetBowlingScore::TrySendFrameToGame()
     {
         UE_LOG(LogTemp, Display, TEXT("Enviando frame: %d, %d, %d"), First, Second, Third);
         IBowlingScoreInterface::Execute_AddNewFrame(GameMode, NewFrame);
+        
+        if(FrameIndex==9)IBowlingScoreInterface::Execute_FinishGame(GameMode);
     }
 }
 
