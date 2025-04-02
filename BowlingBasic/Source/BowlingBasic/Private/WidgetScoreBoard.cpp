@@ -133,6 +133,10 @@ FString UWidgetScoreBoard::GetPlayerName_Implementation() const
     return "\0";
 }
 
+void UWidgetScoreBoard::UpdateScoreUI_Implementation(const FBowlingFrame& NewFrame)
+{
+}
+
 void UWidgetScoreBoard::ResetScoreBoard()
 {
 

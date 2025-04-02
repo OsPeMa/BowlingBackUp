@@ -26,6 +26,7 @@ public:
 	void ResetBoard_Implementation();
 	/** Returns the player's current display name */
 	virtual FString GetPlayerName_Implementation() const override;
+	void UpdateScoreUI_Implementation(const FBowlingFrame& NewFrame);
 
 
 protected:

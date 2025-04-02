@@ -46,7 +46,7 @@ int32 ABowlingGameModeBase::AddNewFrame_Implementation(const FBowlingFrame& NewF
         {
             IBowlingScoreUIInterface::Execute_UpdateScoreBoardVisuals(ScoreBoardWidget, Frames);
         }
-
+        SetRound(Frames.Num());
     }
     return temp;
 }
@@ -71,11 +71,22 @@ int32 ABowlingGameModeBase::AddFrame(int FirstThrow, int SecondThrow, int ThirdT
         {
             Index = Frames.Add(FBowlingFrame(FirstThrow, SecondThrow, Frames.Num()));
         }
-
+        SetRound(Frames.Num());
         CalculateScore();
         return Index;
     }
     return -1;
+}
+
+int32 ABowlingGameModeBase::GetCurrentRound() const
+{
+    return CurrentRound;
+}
+
+void ABowlingGameModeBase::SetRound(int32 newRound) 
+{
+    CurrentRound = newRound;
+    
 }
 
 // Calculates total score including bonuses from strikes and spares
@@ -156,7 +167,7 @@ void ABowlingGameModeBase::PrintScore()
 }
 
 // Gets total score via interface
-int ABowlingGameModeBase::GetCurrentScore_Implementation() const
+int32 ABowlingGameModeBase::GetCurrentScore_Implementation() const
 {
     return TotalScore;
 }

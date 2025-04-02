@@ -32,6 +32,9 @@ protected:
     /** Current scoreboard UI widget */
     UPROPERTY()
     UUserWidget* ScoreBoardWidget;
+    /** Current Game round */
+    UPROPERTY()
+    int32 CurrentRound;
 
 
     /** Called when game starts, creates scoreboard and enables mouse */
@@ -44,10 +47,15 @@ protected:
 
 
 public:
+    UFUNCTION(BlueprintCallable, Category = "Bowling")
+    void SetRound(int32 newRound);
+
+
+
 
     //Interface
     /** Returns the final score */
-    virtual int GetCurrentScore_Implementation() const override;
+    virtual int32 GetCurrentScore_Implementation() const;
     /** Inserts a frame directly into the data array */
     virtual int32 AddNewFrame_Implementation(const FBowlingFrame& NewFrame) override;
     /** Clears current session and notifies UI to reset */
@@ -63,7 +71,10 @@ public:
 
     //add a frame 
     UFUNCTION(BlueprintCallable, Category = "Bowling")
-    int32 AddFrame(int FirstThrow, int SecondThrow, int ThirdThrow);
+    int32 AddFrame(int FirstThrow, int SecondThrow, int ThirdThrow); 
+
+    UFUNCTION(BlueprintCallable, Category = "Bowling")
+    int32 GetCurrentRound()const;
     /** Utility function to log the score to output log */
     UFUNCTION(BlueprintCallable, Category = "Bowling")
     void PrintScore();
