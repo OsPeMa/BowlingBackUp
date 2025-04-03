@@ -22,7 +22,7 @@ protected:
 
     /** Widget class to spawn as the scoreboard */
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
-    TSubclassOf<UWidgetScoreBoard> ScoreBoardClass;
+    TSubclassOf<UUserWidget> ScoreBoardClass;
     /** Bowling frames (up to 10) */
     UPROPERTY()
     TArray<FBowlingFrame> Frames;
